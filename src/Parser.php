@@ -19,6 +19,9 @@ class Parser
 
     public function parse(Contracts\Lexer $lexer)
     {
+        // Wrap lexer into a decorator that skips whitespaces.
+        $lexer = new SkipWhitespaceLexer($lexer);
+
         $this->root = $this->makeLogicalOperatorNode();
         $this->resetTokenExpectations();
         $this->unclosedNodes = 0;

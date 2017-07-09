@@ -49,7 +49,10 @@ class FeatureTest extends TestCase
                         ['operator' => 'comparison', 'key' => 'category', 'value' => 'y'],
                     ],
                 ],
-                ['operator' => 'comparison', 'key' => 'category', 'value' => 'x'],
+                [
+                    'operator' => 'not',
+                    'child' => ['operator' => 'comparison', 'key' => 'category', 'value' => 'x'],
+                ],
             ],
         ], $this->parse('(category:x OR category:y) AND NOT category:x'));
     }

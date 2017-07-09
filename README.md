@@ -2,7 +2,11 @@
 
 This package allows you to parse Algolia-like queries into sort of a AST.
 
-## Example
+## Installation
+
+`composer require pallares/query-syntax`
+
+## Usage example
 
 ```php
 $query = 'director:"Steven Spielberg" AND (category:"sci-fi" OR category:terror)';

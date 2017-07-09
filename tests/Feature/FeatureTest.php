@@ -19,7 +19,7 @@ class FeatureTest extends TestCase
         return (new Parser)->parse(new Lexer($query));
     }
 
-    public function test()
+    public function test_1()
     {
         $this->assertEquals([
             'operator' => 'and',
@@ -31,8 +31,26 @@ class FeatureTest extends TestCase
                         ['operator' => 'comparison', 'key' => 'category', 'value' => 'sci-fi'],
                         ['operator' => 'comparison', 'key' => 'category', 'value' => 'terror'],
                     ],
-                ]
+                ],
             ],
         ], $this->parse('director:"Steven Spielberg" AND (category:"sci-fi" OR category:terror)'));
+    }
+
+    public function test_2()
+    {
+        // FIXME
+        $this->assertEquals([
+            'operator' => 'and',
+            'children' => [
+                [
+                    'operator' => 'or',
+                    'children' => [
+                        ['operator' => 'comparison', 'key' => 'category', 'value' => 'x'],
+                        ['operator' => 'comparison', 'key' => 'category', 'value' => 'y'],
+                    ],
+                ],
+                ['operator' => 'comparison', 'key' => 'category', 'value' => 'x'],
+            ],
+        ], $this->parse('(category:x OR category:y) AND NOT category:x'));
     }
 }

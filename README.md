@@ -11,9 +11,9 @@ This package allows you to parse Algolia-like queries into sort of a AST.
 ```php
 $query = 'director:"Steven Spielberg" AND (category:"sci-fi" OR category:terror)';
 
-$lexer = new Pallares\QuerySyntax\Lexer(query);
+$lexer = new Pallares\QuerySyntax\Lexer($query);
 
-$ast = (new Pallares\QuerySyntax\Parser)->parse(lexer);
+$ast = (new Pallares\QuerySyntax\Parser)->parse($lexer);
 ```
 
 The AST looks like this:
